@@ -1,0 +1,16 @@
+# Independent upstream clone; revision tracked in configs/provenance.json
+/prompt-injection-as-role-confusion/
+
+# Generated results; back up separately
+/results/*
+!/results/.gitkeep
+
+# Local environments, caches, and secrets
+.venv*/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+.DS_Store
+.ipynb_checkpoints/
