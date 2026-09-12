@@ -1,6 +1,6 @@
 # Role Readout or Causal Lever?
 
-**Testing which components of a prompt-injection steering vector change behavior.**
+**Decomposing a Prompt-Injection Steering Vector.**
 
 A research project for Neel Nanda's MATS application, using GPT-OSS-20B.
 
@@ -17,7 +17,7 @@ The experiment tests a specified role measurement. It does not assume that one l
 
 ## Main finding
 
-**Removing the probe-aligned component leaves a residual that increases simulated attack success while the measured command representation remains classified as Tool.**
+**In the primary evaluation, removing the probe-aligned component leaves a residual that increases simulated attack success while the measured command representation remains classified as Tool.**
 
 On the 37 primary prompts evaluable under all four conditions:
 
@@ -62,7 +62,7 @@ The primary comparison preserves the components' original magnitudes. For each s
 perturbation = alpha × activation norm × component / full-vector norm
 ```
 
-The steering coefficient, `alpha = 0.25`, was selected on a development case and frozen before component evaluation. The frozen plan is committed as [`HANDOFF.md`](HANDOFF.md); the commit history records it before the primary run.
+The steering coefficient, `alpha = 0.25`, was selected on a development case and frozen before component evaluation.
 
 Only the injection-body tokens in the earliest complete fetched-page Tool declaration are steered. Later assistant quotations of the injection are excluded.
 
@@ -85,7 +85,7 @@ The equal-norm experiment compares potency at equal perturbation magnitude. It d
 
 ## Interpretation and limitations
 
-The results demonstrate behavioral efficacy both along and outside the selected probe direction. They do **not** establish a wholly role-independent mechanism.
+The primary experiment provides evidence for behavioral efficacy both along and outside the selected probe direction, while the fresh batches more clearly replicate the behavior–readout dissociation than the individual component effects. These results do not establish a wholly role-independent mechanism.
 
 The main limitations are:
 
@@ -106,16 +106,15 @@ Generated shell commands are never executed. A Python simulator interprets a nar
 
 | Path | Contents |
 |---|---|
-| `scripts/` | Experimental scripts, validation checks, and recovery utilities |
+| `scripts/` | Experimental scripts, validation checks, controls, and post-hoc analyses |
 | `configs/` | Source/model provenance and configuration |
 | `results/final/` | Saved aggregate reports, including trajectory records |
 | `figures/` | Main results, controls, and outcome-level readout plots |
-| `make_figures.py` | Regenerates every figure and `figures/numbers.json` from the committed results |
-| `HANDOFF.md` | The frozen experimental plan, committed before the primary run |
-| `writeup/` | Reserved for report exports; the main report is being drafted in Google Docs |
-| `timeline.md` | Researcher-maintained active-work log |
+| `make_figures.py` | Regenerates the figures from the committed result files |
+| `PROJECT_LOG.md` | Approximate 20-hour research log, including design decisions, debugging, and interpretation changes |
+| `writeup/` | Reserved for report exports; the main report is being drafted separately |
 
-Scripts `08`–`14` cover probe training, the primary decomposition, random and benign controls, two fresh-prompt batches, and the equal-norm comparison.
+Scripts 08–14 cover probe training, the primary decomposition, random and benign controls, two fresh-prompt batches, and the equal-norm comparison. Script 15 performs the within-condition association analysis between downstream role-probe margins and attack outcomes.
 
 ## Provenance and reproduction
 
