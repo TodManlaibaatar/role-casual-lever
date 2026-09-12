@@ -1,9 +1,14 @@
 # Independent upstream clone; revision tracked in configs/provenance.json
 /prompt-injection-as-role-confusion/
 
-# Generated results; back up separately
+# Generated/raw experimental results; backed up separately
 /results/*
 !/results/.gitkeep
+
+# Large/generated experiment artifacts
+*.log
+*.tar.gz
+*.pt
 
 # Local environments, caches, and secrets
 .venv*/
@@ -14,3 +19,12 @@ __pycache__/
 !.env.example
 .DS_Store
 .ipynb_checkpoints/
+
+# Temporary Colab/recovery helpers that are not part of the scientific pipeline
+/scripts/colab_ping.py
+/scripts/restore_norm_matched.py
+/scripts/fix_norm_matched_paths.py
+/scripts/archive_norm_matched_results.py
+# Local recovery-only backup; canonical version is the script without this suffix
+/scripts/14_norm_matched_component_control_WITH_BACKUPS.py
+HANDOFF.md
