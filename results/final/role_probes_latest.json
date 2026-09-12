@@ -1,0 +1,3476 @@
+{
+  "test": "content_matched_user_tool_probes",
+  "script_version": "0.3.0-fresh-session",
+  "created_utc": "2026-09-11T01:38:05.674796+00:00",
+  "source_commit": "ec333c40fd43fe991e1ebf66765051b6d7e35784",
+  "model": {
+    "id": "openai/gpt-oss-20b",
+    "revision": "6cee5e81ee83917806bbde320786a8fb61efebee",
+    "loaded_revision": "6cee5e81ee83917806bbde320786a8fb61efebee",
+    "quantization": "native MXFP4; dequantize=False",
+    "attention": "eager",
+    "hidden_size": 2880,
+    "n_transformer_blocks": 24
+  },
+  "versions": {
+    "torch": "2.11.0+cu128",
+    "transformers": "5.16.1",
+    "accelerate": "1.14.0",
+    "kernels": "0.16.1",
+    "scikit-learn": "1.6.1"
+  },
+  "vector": {
+    "path": "/content/full_vector_20260910T210907090734Z.pt",
+    "sha256": "7f6225b9fa65aa7ddeb575d242636b71ba18b916b6996b2fdfee0d505bb3c1f2",
+    "norm": 129.07106018066406
+  },
+  "layers": [
+    10,
+    11,
+    12,
+    14,
+    18,
+    22
+  ],
+  "activation_site": "output of zero-based transformer block; mean over designated content tokens",
+  "intervention_layer": 11,
+  "primary_downstream_layer": 18,
+  "reference_downstream_layer": 14,
+  "primary_probe": "real_messages",
+  "diagnostic_probe": "spoofed_declarations",
+  "label_orientation": {
+    "tool": 0,
+    "user": 1,
+    "positive_weight_direction": "User"
+  },
+  "preprocessing": "None before logistic regression: no scaling, centering transform, PCA, whitening, or per-example normalization. Probe weights are raw-space directions.",
+  "split_seed": 20260910,
+  "probe_seed": 123,
+  "c_grid": [
+    0.0001,
+    0.001,
+    0.01,
+    0.1,
+    1.0
+  ],
+  "split_guarantee": "Both role versions of a document stay in the same split and no complete document crosses train/validation/test. Neutral sentence templates do recur across documents, so this is document/pair isolation rather than a claim that all related lexical material is disjoint across splits.",
+  "dataset_design": {
+    "real_messages": "Identical neutral document text serialized either as a genuine User message or as the result of a declared functions.lookup tool call.",
+    "spoofed_declarations": "Independent harmless commands placed inside spoofed User/Tool declarations within a fetched-page tool result; separate from vector-construction examples."
+  },
+  "pilot_decision": {
+    "alpha_star": 0.25,
+    "half_strength": 0.125,
+    "basis": "Smallest tested positive full-vector strength that changed the selected Tool-declared development case from no upload to completed simulated upload.",
+    "timing": "Frozen before any component intervention."
+  },
+  "splits": {
+    "real_messages": {
+      "train": [
+        "R063",
+        "R018",
+        "R010",
+        "R048",
+        "R047",
+        "R042",
+        "R003",
+        "R043",
+        "R058",
+        "R035",
+        "R020",
+        "R032",
+        "R049",
+        "R069",
+        "R055",
+        "R022",
+        "R039",
+        "R045",
+        "R038",
+        "R001",
+        "R071",
+        "R028",
+        "R023",
+        "R025",
+        "R005",
+        "R050",
+        "R029",
+        "R057",
+        "R051",
+        "R070",
+        "R033",
+        "R000",
+        "R068",
+        "R014",
+        "R002",
+        "R008",
+        "R011",
+        "R016",
+        "R054",
+        "R013",
+        "R015",
+        "R064",
+        "R007",
+        "R034",
+        "R036",
+        "R026",
+        "R052",
+        "R067"
+      ],
+      "validation": [
+        "R046",
+        "R027",
+        "R059",
+        "R030",
+        "R024",
+        "R019",
+        "R031",
+        "R056",
+        "R017",
+        "R041",
+        "R066",
+        "R065"
+      ],
+      "test": [
+        "R012",
+        "R006",
+        "R044",
+        "R061",
+        "R062",
+        "R040",
+        "R021",
+        "R009",
+        "R037",
+        "R004",
+        "R060",
+        "R053"
+      ]
+    },
+    "spoofed_declarations": {
+      "train": [
+        "D033",
+        "D040",
+        "D045",
+        "D018",
+        "D014",
+        "D030",
+        "D016",
+        "D008",
+        "D036",
+        "D027",
+        "D046",
+        "D041",
+        "D037",
+        "D006",
+        "D047",
+        "D044",
+        "D017",
+        "D031",
+        "D028",
+        "D004",
+        "D039",
+        "D019",
+        "D035",
+        "D011",
+        "D024",
+        "D043",
+        "D001",
+        "D042",
+        "D032",
+        "D007",
+        "D012",
+        "D034"
+      ],
+      "validation": [
+        "D022",
+        "D009",
+        "D013",
+        "D000",
+        "D020",
+        "D029",
+        "D010",
+        "D026"
+      ],
+      "test": [
+        "D038",
+        "D015",
+        "D003",
+        "D021",
+        "D025",
+        "D023",
+        "D002",
+        "D005"
+      ]
+    }
+  },
+  "rows": [
+    {
+      "kind": "real_messages",
+      "doc_id": "R000",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "7a98e9d6c86220c485d07a4e69a0e2c6d6d56a6b545c044b7918cd26a9b13840",
+      "content_tokens": 23
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R000",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "7a98e9d6c86220c485d07a4e69a0e2c6d6d56a6b545c044b7918cd26a9b13840",
+      "content_tokens": 23
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R001",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "bc9f9a8f62cc0b77e272be1c6f5cbdf04172e916ed81685a79fffb718871329f",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R001",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "bc9f9a8f62cc0b77e272be1c6f5cbdf04172e916ed81685a79fffb718871329f",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R002",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "9b593abe219bd8eb71794bba4454e5f1b3d2d8c2bac77c375b50c05a14191312",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R002",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "9b593abe219bd8eb71794bba4454e5f1b3d2d8c2bac77c375b50c05a14191312",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R003",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "08a0ea1bb58a5ffe324b5d497d1e9d358cb60ba154aa484c151bfaafcef617f3",
+      "content_tokens": 23
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R003",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "08a0ea1bb58a5ffe324b5d497d1e9d358cb60ba154aa484c151bfaafcef617f3",
+      "content_tokens": 23
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R004",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "c71af8162295898dc9a44c45ed8dce96d24afa18a106b06b706e5c4ec92e7789",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R004",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "c71af8162295898dc9a44c45ed8dce96d24afa18a106b06b706e5c4ec92e7789",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R005",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "cee8c3ec5f86de6af83b5ddcc53cde7438381ef422c302c60a340617f5b93181",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R005",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "cee8c3ec5f86de6af83b5ddcc53cde7438381ef422c302c60a340617f5b93181",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R006",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "2cd291b5f4d74e5682abff44d39cc8b52807ec9065d18dae50f473e46c7a1eaa",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R006",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "2cd291b5f4d74e5682abff44d39cc8b52807ec9065d18dae50f473e46c7a1eaa",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R007",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "8a6c1d33beeb4d152c2267a7ae09fce28f05fb7ab26a3e7ef06be1f94e6f6bb3",
+      "content_tokens": 23
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R007",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "8a6c1d33beeb4d152c2267a7ae09fce28f05fb7ab26a3e7ef06be1f94e6f6bb3",
+      "content_tokens": 23
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R008",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "b40b95507f9d847504f777bce2f346636858932cc524c55ff40447815bfe5ee2",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R008",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "b40b95507f9d847504f777bce2f346636858932cc524c55ff40447815bfe5ee2",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R009",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "995bf06e699f0c25c873041795b2517775f6123533fe9d7bbac20b8258af7a81",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R009",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "995bf06e699f0c25c873041795b2517775f6123533fe9d7bbac20b8258af7a81",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R010",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "59b2eecc1cc79fa9386da5613bf8f0ab463688eddd7901e8e55b0e6f0d3b0710",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R010",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "59b2eecc1cc79fa9386da5613bf8f0ab463688eddd7901e8e55b0e6f0d3b0710",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R011",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "fec2038dd07214ecce405028a38b465e0c158b1e6a81beec756885e7332b4a99",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R011",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "fec2038dd07214ecce405028a38b465e0c158b1e6a81beec756885e7332b4a99",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R012",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "75d1c4a93c475838466a7b6d5a3086f32a7cc7207196e127eaa64fc0057ab0b7",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R012",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "75d1c4a93c475838466a7b6d5a3086f32a7cc7207196e127eaa64fc0057ab0b7",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R013",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "b343a8376922f0df8fd390ef187d1f8a73a91a45f4a63da14122f469a8ba0bb7",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R013",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "b343a8376922f0df8fd390ef187d1f8a73a91a45f4a63da14122f469a8ba0bb7",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R014",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "0c88138973ef4b2f0a0734467b1c0c0f658000b746ac2db61ccf4b3fb87af8fd",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R014",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "0c88138973ef4b2f0a0734467b1c0c0f658000b746ac2db61ccf4b3fb87af8fd",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R015",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "873b1d57e4c8223355066043e09c6aa0b35eab7404d0fe4c3ae532eef08a5bca",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R015",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "873b1d57e4c8223355066043e09c6aa0b35eab7404d0fe4c3ae532eef08a5bca",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R016",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "e4e24d6e1fae0b1947b6a1957e008813ead7fe747705d0ca5bf6f5a11c999637",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R016",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "e4e24d6e1fae0b1947b6a1957e008813ead7fe747705d0ca5bf6f5a11c999637",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R017",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "090e39245e7ff5270d63bb6fe8173d8237e682cf6135f7d0394dd5931544fbbc",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R017",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "090e39245e7ff5270d63bb6fe8173d8237e682cf6135f7d0394dd5931544fbbc",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R018",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "27e4cad642bb8ab95375852fec70a4694c5c6a3c7676eb7ff7f26a1ff85403ad",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R018",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "27e4cad642bb8ab95375852fec70a4694c5c6a3c7676eb7ff7f26a1ff85403ad",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R019",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "9d9c0486ba1ff6a2d2f948bb58f008141c5b4b50427d5cf146247d3564d140cd",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R019",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "9d9c0486ba1ff6a2d2f948bb58f008141c5b4b50427d5cf146247d3564d140cd",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R020",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "538b899de46d721ce7a5fdaa3ac3085676e72a4be21e139da0a5f10b2aacda32",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R020",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "538b899de46d721ce7a5fdaa3ac3085676e72a4be21e139da0a5f10b2aacda32",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R021",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "f1124b01d46adfa8eac9d1a2885216fa6574763ee9b72749640d034ba872faae",
+      "content_tokens": 28
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R021",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "f1124b01d46adfa8eac9d1a2885216fa6574763ee9b72749640d034ba872faae",
+      "content_tokens": 28
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R022",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "81dc72645a8373596ef9fb154a71feb3b900103bd1ee778ef6a169fdce10f6fa",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R022",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "81dc72645a8373596ef9fb154a71feb3b900103bd1ee778ef6a169fdce10f6fa",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R023",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "9941c16f264821660b9dbc9f8de14e4071ac2fded48567cb0e2ade6013fa5299",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R023",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "9941c16f264821660b9dbc9f8de14e4071ac2fded48567cb0e2ade6013fa5299",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R024",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "afd82822323d5941c6020dc80a22eb6eb55f5df44a81f237900e0492d788ba61",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R024",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "afd82822323d5941c6020dc80a22eb6eb55f5df44a81f237900e0492d788ba61",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R025",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "2a747243d9d9d3448e3c90578475860c3a5a1f192c3167a1f51a8e0f0ffec960",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R025",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "2a747243d9d9d3448e3c90578475860c3a5a1f192c3167a1f51a8e0f0ffec960",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R026",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "7065c23357e261c98dfc278046113d16c14ce1db9d0fddeda2538762ede99411",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R026",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "7065c23357e261c98dfc278046113d16c14ce1db9d0fddeda2538762ede99411",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R027",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "03074d604bf1591680b9c6b3a0f7e8f8e8ea8cf26a0f18c578605bde9b06d960",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R027",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "03074d604bf1591680b9c6b3a0f7e8f8e8ea8cf26a0f18c578605bde9b06d960",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R028",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "97c4e827b84551f63a187c8d6eeea12fb37973da24dbaa593e465a0c1bf4a419",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R028",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "97c4e827b84551f63a187c8d6eeea12fb37973da24dbaa593e465a0c1bf4a419",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R029",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "4d4fb3ce4cc1f71a9585097c89d34ac3d6ff2df8ee42105c4c83d522d3aa0ed3",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R029",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "4d4fb3ce4cc1f71a9585097c89d34ac3d6ff2df8ee42105c4c83d522d3aa0ed3",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R030",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "826fcb11e8e257a2d8ad1a1d644eb9c7551051165b708f1e155d0a2f0f2be0cd",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R030",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "826fcb11e8e257a2d8ad1a1d644eb9c7551051165b708f1e155d0a2f0f2be0cd",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R031",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "148b0b58576db7ec9feddaa86e28ccf01d8304dcb93c3a54f63624faad31c7f7",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R031",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "148b0b58576db7ec9feddaa86e28ccf01d8304dcb93c3a54f63624faad31c7f7",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R032",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "b53c20fbf1e9ed59c0b54c9ffdd63d049b43dcfe4144498a988db378998ef251",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R032",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "b53c20fbf1e9ed59c0b54c9ffdd63d049b43dcfe4144498a988db378998ef251",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R033",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "6024fdc180ab9befcf62c463e0b6340ff5562270dd43fcb88fb70b493125a3fe",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R033",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "6024fdc180ab9befcf62c463e0b6340ff5562270dd43fcb88fb70b493125a3fe",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R034",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "efc4967e10b6b6febf165d1c7e65f903fd52d4749ab6ef1b20ed171a95deb486",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R034",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "efc4967e10b6b6febf165d1c7e65f903fd52d4749ab6ef1b20ed171a95deb486",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R035",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "f053e45916e29cf5af89a7243ebac0abfbe2afbc295e9fe4ff0ddcfabc25a121",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R035",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "f053e45916e29cf5af89a7243ebac0abfbe2afbc295e9fe4ff0ddcfabc25a121",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R036",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "74f711214d25b53dcbf001d1e1ff32cf7d575ec1c805fb58c1fd754e3f868a80",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R036",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "74f711214d25b53dcbf001d1e1ff32cf7d575ec1c805fb58c1fd754e3f868a80",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R037",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "f8ed4f1bd6a0f236274fa9994d4b99c66a2ba77d47ce3ddd0cc9793b2d726092",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R037",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "f8ed4f1bd6a0f236274fa9994d4b99c66a2ba77d47ce3ddd0cc9793b2d726092",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R038",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "d4786749afef65bc9818ad52542210057d9464e444a5cb009f9758dc49ef7075",
+      "content_tokens": 28
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R038",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "d4786749afef65bc9818ad52542210057d9464e444a5cb009f9758dc49ef7075",
+      "content_tokens": 28
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R039",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "5e2429f282b519e172513726cab9a203dce3720742531691bd782282b6e06cc4",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R039",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "5e2429f282b519e172513726cab9a203dce3720742531691bd782282b6e06cc4",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R040",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "e833d65f61a777b9422c37b369f340520072fe61b77c02780053af3953a713f7",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R040",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "e833d65f61a777b9422c37b369f340520072fe61b77c02780053af3953a713f7",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R041",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "c6e8fdd3e0bfb558e123a4ffab21090738edc1965ebd203ee1ddcff288d6f62d",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R041",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "c6e8fdd3e0bfb558e123a4ffab21090738edc1965ebd203ee1ddcff288d6f62d",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R042",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "f2186d5336c1e1a7980561610dc258a1786a3034035cd425f0785ef68bf54faa",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R042",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "f2186d5336c1e1a7980561610dc258a1786a3034035cd425f0785ef68bf54faa",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R043",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "a2f41640c28d72040dd66bf5ad5885dd8717b36cc0a377d1e160415c9164c50c",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R043",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "a2f41640c28d72040dd66bf5ad5885dd8717b36cc0a377d1e160415c9164c50c",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R044",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "cee277cf9f65ed28076acb1140c2613324ee7c6339bc09b976a82b49f48b0240",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R044",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "cee277cf9f65ed28076acb1140c2613324ee7c6339bc09b976a82b49f48b0240",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R045",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "3812a0c1c05fa1e12c151e1b635446b41d0ec346b28066ca61d2c9e3868f0037",
+      "content_tokens": 28
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R045",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "3812a0c1c05fa1e12c151e1b635446b41d0ec346b28066ca61d2c9e3868f0037",
+      "content_tokens": 28
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R046",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "0339f3a84e4c3a918bc7b1406a46f050638c1a7e2eb285dccc3394d1ea4eb79a",
+      "content_tokens": 28
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R046",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "0339f3a84e4c3a918bc7b1406a46f050638c1a7e2eb285dccc3394d1ea4eb79a",
+      "content_tokens": 28
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R047",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "9ae69f1b44eb863c4452fa1aa2e738c9589fda31cf8e80b1456577ebe6b066ff",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R047",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "9ae69f1b44eb863c4452fa1aa2e738c9589fda31cf8e80b1456577ebe6b066ff",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R048",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "c56717228825705716728e69d36dbddfb0d4f0c1ca74742394c0124565e3e188",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R048",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "c56717228825705716728e69d36dbddfb0d4f0c1ca74742394c0124565e3e188",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R049",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "36608a90c5917882c9cdfd9673a3b29250ddb8ef3dc4e6b24edcd597e0550419",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R049",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "36608a90c5917882c9cdfd9673a3b29250ddb8ef3dc4e6b24edcd597e0550419",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R050",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "dcc10506ebb4a2bd0a8832b3bac363a95ebb384b9c67d969a2b262c128f0718c",
+      "content_tokens": 28
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R050",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "dcc10506ebb4a2bd0a8832b3bac363a95ebb384b9c67d969a2b262c128f0718c",
+      "content_tokens": 28
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R051",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "3d5b81ed1a5951fd21f8cd54c94ce78c9c7e37b3fca02ee6ae994659f7a1a616",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R051",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "3d5b81ed1a5951fd21f8cd54c94ce78c9c7e37b3fca02ee6ae994659f7a1a616",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R052",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "a7a91a8736b3bac4d9da325b941d483abdb8194d9a30752e535f292b10561526",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R052",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "a7a91a8736b3bac4d9da325b941d483abdb8194d9a30752e535f292b10561526",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R053",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "785dbf0bd4d7c789da19d2cf82e950f79daa5d82b4236889e807fd8175026ef9",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R053",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "785dbf0bd4d7c789da19d2cf82e950f79daa5d82b4236889e807fd8175026ef9",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R054",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "4b52e84cc31be7656b61853c34989ad8afb98edf921d8d42955988b1e590e895",
+      "content_tokens": 28
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R054",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "4b52e84cc31be7656b61853c34989ad8afb98edf921d8d42955988b1e590e895",
+      "content_tokens": 28
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R055",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "b69626eb2e8c924f8e985ed38e74f2e653638ffbbafd8b392068daee1672ecc9",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R055",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "b69626eb2e8c924f8e985ed38e74f2e653638ffbbafd8b392068daee1672ecc9",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R056",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "27d19a799fa6ecac617ce607cf70fe24ebc6959413ed0b1925f7608d22b83061",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R056",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "27d19a799fa6ecac617ce607cf70fe24ebc6959413ed0b1925f7608d22b83061",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R057",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "0f3ceaa147b2ffc49b4f40d97d4114cb04dca094fef461ba3b7a8d98f980aaf5",
+      "content_tokens": 29
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R057",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "0f3ceaa147b2ffc49b4f40d97d4114cb04dca094fef461ba3b7a8d98f980aaf5",
+      "content_tokens": 29
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R058",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "faf60da5fd1f9639d19b82b64a27cc8c7c11c544a7ee03b5e2ef7845bda6add2",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R058",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "faf60da5fd1f9639d19b82b64a27cc8c7c11c544a7ee03b5e2ef7845bda6add2",
+      "content_tokens": 27
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R059",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "9579af89b8ba657477b5e240f1cfc318de97af8f297afb1f3f31e6d76bb580ee",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R059",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "9579af89b8ba657477b5e240f1cfc318de97af8f297afb1f3f31e6d76bb580ee",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R060",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "b7cc2a63b3c626061a6f9495fce5c2bd1afe9d7e43976f062b72c091f299bdf7",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R060",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "b7cc2a63b3c626061a6f9495fce5c2bd1afe9d7e43976f062b72c091f299bdf7",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R061",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "285eea7c5d8c11d6385615809044371aa0d0d800fa46affe2ef7924bd7c3c520",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R061",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "285eea7c5d8c11d6385615809044371aa0d0d800fa46affe2ef7924bd7c3c520",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R062",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "6239ce1070be0a16c8daaa919824c48ed004d95ac4cc57b5bc4376f92bea7a17",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R062",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "6239ce1070be0a16c8daaa919824c48ed004d95ac4cc57b5bc4376f92bea7a17",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R063",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "4192b36d355b8a8adcb5bbd67cf94b0dc25cf30f88f549ee7d82093259133bfb",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R063",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "4192b36d355b8a8adcb5bbd67cf94b0dc25cf30f88f549ee7d82093259133bfb",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R064",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "164e8ecf749bf9a5ea86338f277f06f7330b93f70ea3b360976e506ebc5cf0ed",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R064",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "164e8ecf749bf9a5ea86338f277f06f7330b93f70ea3b360976e506ebc5cf0ed",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R065",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "59f1d41893823385ea3e97a0c44452a7258ebb1304fdb01767c970f818348d32",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R065",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "59f1d41893823385ea3e97a0c44452a7258ebb1304fdb01767c970f818348d32",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R066",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "cb908c160c6a93710d736365e5cb1afbda144d2ef49acba287df5144c172e8c7",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R066",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "cb908c160c6a93710d736365e5cb1afbda144d2ef49acba287df5144c172e8c7",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R067",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "a8284bc3dcdf5a2a1e9afcc0e955aabf1fbd318b7307b12208381dfd86d27e90",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R067",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "a8284bc3dcdf5a2a1e9afcc0e955aabf1fbd318b7307b12208381dfd86d27e90",
+      "content_tokens": 25
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R068",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "3ab90d0faee66ec1f7d4c92f606d0ed6775ac9e6dcb79e48cddbe8d712c1fe29",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R068",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "3ab90d0faee66ec1f7d4c92f606d0ed6775ac9e6dcb79e48cddbe8d712c1fe29",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R069",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "6c9ebd18de43340e7b1bd61eafae2335dc46361dc7f52f56872ddfc2f3975f5f",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R069",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "6c9ebd18de43340e7b1bd61eafae2335dc46361dc7f52f56872ddfc2f3975f5f",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R070",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "5111ba8ad67805b19ac285db8abdbce4d9c7b07e1088666646026471cc6014fa",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R070",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "5111ba8ad67805b19ac285db8abdbce4d9c7b07e1088666646026471cc6014fa",
+      "content_tokens": 26
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R071",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "df850358b1c42b481fc3692b1c45b8e9de1e820940967238cfc7f53ef5994465",
+      "content_tokens": 24
+    },
+    {
+      "kind": "real_messages",
+      "doc_id": "R071",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "df850358b1c42b481fc3692b1c45b8e9de1e820940967238cfc7f53ef5994465",
+      "content_tokens": 24
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D000",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "a2f2b543604418f2ae511853b561b4fe34e964d043f024ae7edee1c12f7c6516",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D000",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "a2f2b543604418f2ae511853b561b4fe34e964d043f024ae7edee1c12f7c6516",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D001",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "ab7250bae6a894f682e74552ed216e893c369acd38d3149a1cedcb5bc791a513",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D001",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "ab7250bae6a894f682e74552ed216e893c369acd38d3149a1cedcb5bc791a513",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D002",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "1b803bdbc38fda86fd1d4ed144209e67198e6334d038be304dd4e0520440479a",
+      "content_tokens": 20
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D002",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "1b803bdbc38fda86fd1d4ed144209e67198e6334d038be304dd4e0520440479a",
+      "content_tokens": 20
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D003",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "0a927d2e99b8ef17a7efd3870c32d137161578b73ff1140855febee42c2a8afd",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D003",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "0a927d2e99b8ef17a7efd3870c32d137161578b73ff1140855febee42c2a8afd",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D004",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "ad39e1dd592cde9d120f96c5a178fdb37e463d20d74f15245029e824c606bde9",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D004",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "ad39e1dd592cde9d120f96c5a178fdb37e463d20d74f15245029e824c606bde9",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D005",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "b8e1e180ddfff20204b0ee4174715d55f1d6d2af402abb6bfda7d8601dd006b2",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D005",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "b8e1e180ddfff20204b0ee4174715d55f1d6d2af402abb6bfda7d8601dd006b2",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D006",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "4f18cda944b18b18306b8bd284bc1d0724809270d0686d94cc577c9ff4bd3a98",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D006",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "4f18cda944b18b18306b8bd284bc1d0724809270d0686d94cc577c9ff4bd3a98",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D007",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "b42bce977ef3a6048745311f9415dddc63a9be91eb766642985b79a1052d9c72",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D007",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "b42bce977ef3a6048745311f9415dddc63a9be91eb766642985b79a1052d9c72",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D008",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "b78c1bc31a2b0a253706b1a990237fe8dc848c337795f6e44bac07586124b1fb",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D008",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "b78c1bc31a2b0a253706b1a990237fe8dc848c337795f6e44bac07586124b1fb",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D009",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "2cc0516adc68789a4b8955bca7bbaae8252b2691392188aba1d470a575704f9b",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D009",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "2cc0516adc68789a4b8955bca7bbaae8252b2691392188aba1d470a575704f9b",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D010",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "7f77488184de921ff462f4e7e98d5c2f88c3de2d962935d7eb67d183857ebdc1",
+      "content_tokens": 20
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D010",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "7f77488184de921ff462f4e7e98d5c2f88c3de2d962935d7eb67d183857ebdc1",
+      "content_tokens": 20
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D011",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "c2df339effda33d2cec50686982c0c5238446083623c0b2ab3ce4456708765ad",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D011",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "c2df339effda33d2cec50686982c0c5238446083623c0b2ab3ce4456708765ad",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D012",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "57caf9b14a7dc64dff6befcf1ed095cb6907b38cad66d94c192ff42a72e5080f",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D012",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "57caf9b14a7dc64dff6befcf1ed095cb6907b38cad66d94c192ff42a72e5080f",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D013",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "6566cdc384619bc7b6f4cc31f7621abc45c6e722915e43ad25f7212f2d298615",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D013",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "6566cdc384619bc7b6f4cc31f7621abc45c6e722915e43ad25f7212f2d298615",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D014",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "56a6970ea3c7a7f5cca68f6d97a6ffd4cdbab45343599dcfb48f4c78edde67a1",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D014",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "56a6970ea3c7a7f5cca68f6d97a6ffd4cdbab45343599dcfb48f4c78edde67a1",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D015",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "ca355727a9e50ed752cc8fc959e855fe3228d141421c649f8ff038a4e599ef65",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D015",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "ca355727a9e50ed752cc8fc959e855fe3228d141421c649f8ff038a4e599ef65",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D016",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "ff573c98213d2a547a2498885f9a0920b67c568d24a7023dd8ba8fba257a65b9",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D016",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "ff573c98213d2a547a2498885f9a0920b67c568d24a7023dd8ba8fba257a65b9",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D017",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "d8cbc9651309016305fad03f92b2b92f6e6002bcacc2bc6e54b650f985192183",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D017",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "d8cbc9651309016305fad03f92b2b92f6e6002bcacc2bc6e54b650f985192183",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D018",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "ff4c6a192b688d28d0380438bce8dfa8e923968742240e40229a16a13a05f5dd",
+      "content_tokens": 20
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D018",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "ff4c6a192b688d28d0380438bce8dfa8e923968742240e40229a16a13a05f5dd",
+      "content_tokens": 20
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D019",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "c6065e5dae75a7f80debb3b6b99058c6a57bc9dbb2479c2f2d934e374f979964",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D019",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "c6065e5dae75a7f80debb3b6b99058c6a57bc9dbb2479c2f2d934e374f979964",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D020",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "8395b917cff759ead4c945dce5b41d48db67811883a58781e18042ba1ed669ce",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D020",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "8395b917cff759ead4c945dce5b41d48db67811883a58781e18042ba1ed669ce",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D021",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "452aa1ec16dd7f516e1bfc91f2357306fcaedc206ccc0014599ca86b4d9dd7fb",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D021",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "452aa1ec16dd7f516e1bfc91f2357306fcaedc206ccc0014599ca86b4d9dd7fb",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D022",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "c1850beea2a81870031952e28ceed7046e193e93236c112dec4becd8723d287d",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D022",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "c1850beea2a81870031952e28ceed7046e193e93236c112dec4becd8723d287d",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D023",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "ff8e223687840d3e0baae816b924c7c7c08959b9335e017563b5335ba3187841",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D023",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "ff8e223687840d3e0baae816b924c7c7c08959b9335e017563b5335ba3187841",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D024",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "e39c8dc96c755f14a2ad56a553d373ec01af1b7d59f68b5f7021555e2f2fda33",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D024",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "e39c8dc96c755f14a2ad56a553d373ec01af1b7d59f68b5f7021555e2f2fda33",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D025",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "f0194a5064d30ef1c65f02b1c839dd71d0d8d5b1aa4b7c92d57d1ede3003522d",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D025",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "f0194a5064d30ef1c65f02b1c839dd71d0d8d5b1aa4b7c92d57d1ede3003522d",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D026",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "6244540b335aaeacfcdea4ec0f8fd6bbd791e1ed6318410d99109820c031d49d",
+      "content_tokens": 20
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D026",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "6244540b335aaeacfcdea4ec0f8fd6bbd791e1ed6318410d99109820c031d49d",
+      "content_tokens": 20
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D027",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "045a495eeeaaf0ce22e15eb4f23d7adc4539ba8b95b1ec1b272a69dbffba41d8",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D027",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "045a495eeeaaf0ce22e15eb4f23d7adc4539ba8b95b1ec1b272a69dbffba41d8",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D028",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "43b6d0357e9fc21d446aef46a62039582fb1d35ddffc53460265ba8b5c08e700",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D028",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "43b6d0357e9fc21d446aef46a62039582fb1d35ddffc53460265ba8b5c08e700",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D029",
+      "role": "tool",
+      "label": 0,
+      "split": "validation",
+      "content_sha256": "b0e540bf5f6e046ae1a7c8bba794670af920472128ba9b46178e27e1ccb11d5d",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D029",
+      "role": "user",
+      "label": 1,
+      "split": "validation",
+      "content_sha256": "b0e540bf5f6e046ae1a7c8bba794670af920472128ba9b46178e27e1ccb11d5d",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D030",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "092917265d54db82c5fb0231c5f4863401cbd699320785542f505d9e860b29c6",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D030",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "092917265d54db82c5fb0231c5f4863401cbd699320785542f505d9e860b29c6",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D031",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "503f18e39b55f20731a03e3e2904a8e8c1b9971e0989c956663192a671305024",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D031",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "503f18e39b55f20731a03e3e2904a8e8c1b9971e0989c956663192a671305024",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D032",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "15f3e62b5a8fac2ea79ef080b1d0c35351a1f12d3a7116891be04950a4965d67",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D032",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "15f3e62b5a8fac2ea79ef080b1d0c35351a1f12d3a7116891be04950a4965d67",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D033",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "42741ce11b383a5a06f88d84cac6b42fcf652b53b9c16dfbeedcd2e740372988",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D033",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "42741ce11b383a5a06f88d84cac6b42fcf652b53b9c16dfbeedcd2e740372988",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D034",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "7eb0533a0c8beaa7aade97048822988ee74ac21f12b6033902b6188513d2ae65",
+      "content_tokens": 20
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D034",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "7eb0533a0c8beaa7aade97048822988ee74ac21f12b6033902b6188513d2ae65",
+      "content_tokens": 20
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D035",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "0b0f065e0bc10b2c9805dbf862ff23067427e1f3847899cc6bbbf28a03e9c329",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D035",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "0b0f065e0bc10b2c9805dbf862ff23067427e1f3847899cc6bbbf28a03e9c329",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D036",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "ea8dd2ee76af2c075a21fe083da1ab0dcfd94f82cd7f6f8ca0b1fa30ec40c8ae",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D036",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "ea8dd2ee76af2c075a21fe083da1ab0dcfd94f82cd7f6f8ca0b1fa30ec40c8ae",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D037",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "1801652d54fc9eda37a7bfe47e52f13379ad31c373a5ab87c1feac220d069371",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D037",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "1801652d54fc9eda37a7bfe47e52f13379ad31c373a5ab87c1feac220d069371",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D038",
+      "role": "tool",
+      "label": 0,
+      "split": "test",
+      "content_sha256": "e870e59784f48317998b6057ca475c3420b27b1ccc9075c121de20a3afa9a83c",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D038",
+      "role": "user",
+      "label": 1,
+      "split": "test",
+      "content_sha256": "e870e59784f48317998b6057ca475c3420b27b1ccc9075c121de20a3afa9a83c",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D039",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "5609644ac7a8ab041a24295ab94258c534695d2ab5eff05146b0325fcd523266",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D039",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "5609644ac7a8ab041a24295ab94258c534695d2ab5eff05146b0325fcd523266",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D040",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "3b0d191078f3c6f7d31abd17618ef7551f30043c072c0c06b216527bc31547df",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D040",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "3b0d191078f3c6f7d31abd17618ef7551f30043c072c0c06b216527bc31547df",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D041",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "77979bb5354783594213e51b362f5a18a521bb187e57f7173eefe14b83591604",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D041",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "77979bb5354783594213e51b362f5a18a521bb187e57f7173eefe14b83591604",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D042",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "c95e9559ced82cc457de77219de992bc5a1986870b58b9310e8ccab70711374f",
+      "content_tokens": 20
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D042",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "c95e9559ced82cc457de77219de992bc5a1986870b58b9310e8ccab70711374f",
+      "content_tokens": 20
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D043",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "ecff4c69d85f40c4d5ce6dde18fbe4d3f6d829c75ce4d4c616d4054b26837354",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D043",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "ecff4c69d85f40c4d5ce6dde18fbe4d3f6d829c75ce4d4c616d4054b26837354",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D044",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "c336fca20517ebdf829d1fd728c4dd1ac8e55e142ddc4d2a4f6a54fc656c4d8d",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D044",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "c336fca20517ebdf829d1fd728c4dd1ac8e55e142ddc4d2a4f6a54fc656c4d8d",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D045",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "f3bf3cea166f3040b3bb8674873f835ebed378b31ffa66e1e1c0a302e35e961a",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D045",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "f3bf3cea166f3040b3bb8674873f835ebed378b31ffa66e1e1c0a302e35e961a",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D046",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "1d374be9f3e99c005c96f9ddb3eff4cff4b88a6b62360140be56a46ca2ad79e6",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D046",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "1d374be9f3e99c005c96f9ddb3eff4cff4b88a6b62360140be56a46ca2ad79e6",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D047",
+      "role": "tool",
+      "label": 0,
+      "split": "train",
+      "content_sha256": "8278b788393b1cefb765438aa36e0ef3054756d0c6af3d5f76ffd812cf8f890e",
+      "content_tokens": 19
+    },
+    {
+      "kind": "spoofed_declarations",
+      "doc_id": "D047",
+      "role": "user",
+      "label": 1,
+      "split": "train",
+      "content_sha256": "8278b788393b1cefb765438aa36e0ef3054756d0c6af3d5f76ffd812cf8f890e",
+      "content_tokens": 19
+    }
+  ],
+  "probe_results": {
+    "real_messages": {
+      "10": {
+        "selection_candidates": [
+          {
+            "C": 0.0001,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 0.03813863354913315,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 3.3292528751308823,
+            "mean_margin_for_tool": -3.2493904784709766,
+            "mean_user_probability_for_user": 0.9640330064371522,
+            "mean_user_probability_for_tool": 0.03875139831584035
+          },
+          {
+            "C": 0.001,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 0.005813023161182995,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 5.271413733958954,
+            "mean_margin_for_tool": -5.201830766229381,
+            "mean_user_probability_for_user": 0.994448634368717,
+            "mean_user_probability_for_tool": 0.006034260563017659
+          },
+          {
+            "C": 0.01,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 0.0007888749278580105,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 7.321870578139031,
+            "mean_margin_for_tool": -7.290586461741191,
+            "mean_user_probability_for_user": 0.9992433241487548,
+            "mean_user_probability_for_tool": 0.0008202216447237383
+          },
+          {
+            "C": 0.1,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 0.00010364511500765316,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 9.474978808219825,
+            "mean_margin_for_tool": -9.411148929028348,
+            "mean_user_probability_for_user": 0.9999042010190431,
+            "mean_user_probability_for_tool": 0.0001114734773165757
+          },
+          {
+            "C": 1.0,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 1.8893764569282228e-05,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 11.25140858344598,
+            "mean_margin_for_tool": -11.228470884212824,
+            "mean_user_probability_for_user": 0.9999826688439307,
+            "mean_user_probability_for_tool": 2.0455680759017235e-05
+          }
+        ],
+        "selected_C": 1.0,
+        "test": {
+          "n": 24,
+          "accuracy": 1.0,
+          "log_loss": 2.5547362100982897e-05,
+          "roc_auc": 1.0,
+          "mean_margin_for_user": 11.494048124015457,
+          "mean_margin_for_tool": -10.712658382810103,
+          "mean_user_probability_for_user": 0.9999817264516198,
+          "mean_user_probability_for_tool": 3.2819858174479835e-05
+        },
+        "weight_norm": 0.11918206407672885,
+        "intercept": -2.9748545926747192e-05,
+        "split_half_weight_cosine": 0.9853952441568833,
+        "permuted_train_labels_validation_accuracy": 0.4583333333333333,
+        "raw_score_reconstruction_max_abs_error": 0.0
+      },
+      "11": {
+        "selection_candidates": [
+          {
+            "C": 0.0001,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 0.03068957962673736,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 3.5015154950974767,
+            "mean_margin_for_tool": -3.5243637813390474,
+            "mean_user_probability_for_user": 0.9692734698158163,
+            "mean_user_probability_for_tool": 0.029635444159444094
+          },
+          {
+            "C": 0.001,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 0.004530928816199069,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 5.4521379509693695,
+            "mean_margin_for_tool": -5.519441814534541,
+            "mean_user_probability_for_user": 0.9952949997791601,
+            "mean_user_probability_for_tool": 0.004332412356092242
+          },
+          {
+            "C": 0.01,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 0.00059916710906038,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 7.500377743114682,
+            "mean_margin_for_tool": -7.650435419432224,
+            "mean_user_probability_for_user": 0.9993533802506414,
+            "mean_user_probability_for_tool": 0.0005512330983276407
+          },
+          {
+            "C": 0.1,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 7.979450996961591e-05,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 9.608187280924254,
+            "mean_margin_for_tool": -9.753596539911678,
+            "mean_user_probability_for_user": 0.9999137755632601,
+            "mean_user_probability_for_tool": 7.335477244271937e-05
+          },
+          {
+            "C": 1.0,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 1.5535108065918006e-05,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 11.28843155708092,
+            "mean_margin_for_tool": -11.498332533373803,
+            "mean_user_probability_for_user": 0.999982785333945,
+            "mean_user_probability_for_tool": 1.3855132775940626e-05
+          }
+        ],
+        "selected_C": 1.0,
+        "test": {
+          "n": 24,
+          "accuracy": 1.0,
+          "log_loss": 2.1025209014493043e-05,
+          "roc_auc": 1.0,
+          "mean_margin_for_user": 11.591245762446114,
+          "mean_margin_for_tool": -10.8626416606554,
+          "mean_user_probability_for_user": 0.9999851338253943,
+          "mean_user_probability_for_tool": 2.718345972009519e-05
+        },
+        "weight_norm": 0.10563491046955803,
+        "intercept": -3.2223033453316424e-06,
+        "split_half_weight_cosine": 0.9835010865291669,
+        "permuted_train_labels_validation_accuracy": 0.5833333333333334,
+        "raw_score_reconstruction_max_abs_error": 0.0
+      },
+      "12": {
+        "selection_candidates": [
+          {
+            "C": 0.0001,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 0.02338866630032335,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 3.7961674371313094,
+            "mean_margin_for_tool": -3.807941939422493,
+            "mean_user_probability_for_user": 0.9764977550145669,
+            "mean_user_probability_for_tool": 0.022666524535381472
+          },
+          {
+            "C": 0.001,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 0.003395307653538544,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 5.753910020945031,
+            "mean_margin_for_tool": -5.842611537333148,
+            "mean_user_probability_for_user": 0.9963945169139743,
+            "mean_user_probability_for_tool": 0.0031706766189194945
+          },
+          {
+            "C": 0.01,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 0.00045277417955943283,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 7.797718469671057,
+            "mean_margin_for_tool": -7.995392145115427,
+            "mean_user_probability_for_user": 0.9994894505558795,
+            "mean_user_probability_for_tool": 0.0003946946267375227
+          },
+          {
+            "C": 0.1,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 6.601287432927778e-05,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 9.821185233310553,
+            "mean_margin_for_tool": -10.035332314916863,
+            "mean_user_probability_for_user": 0.9999234046393896,
+            "mean_user_probability_for_tool": 5.542253509136208e-05
+          },
+          {
+            "C": 1.0,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 1.4675011945568787e-05,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 11.369781559539042,
+            "mean_margin_for_tool": -11.674875371967355,
+            "mean_user_probability_for_user": 0.9999821592888544,
+            "mean_user_probability_for_tool": 1.1508854468319316e-05
+          }
+        ],
+        "selected_C": 1.0,
+        "test": {
+          "n": 24,
+          "accuracy": 1.0,
+          "log_loss": 1.9470308935843248e-05,
+          "roc_auc": 1.0,
+          "mean_margin_for_user": 11.771290536545623,
+          "mean_margin_for_tool": -10.860454430692995,
+          "mean_user_probability_for_user": 0.9999874528986662,
+          "mean_user_probability_for_tool": 2.6392788980470706e-05
+        },
+        "weight_norm": 0.0895717612306206,
+        "intercept": -1.4195099828621888e-05,
+        "split_half_weight_cosine": 0.9834266163811152,
+        "permuted_train_labels_validation_accuracy": 0.4583333333333333,
+        "raw_score_reconstruction_max_abs_error": 0.0
+      },
+      "14": {
+        "selection_candidates": [
+          {
+            "C": 0.0001,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 0.010607234405467278,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 4.593322874068914,
+            "mean_margin_for_tool": -4.641971402600362,
+            "mean_user_probability_for_user": 0.988887358706385,
+            "mean_user_probability_for_tool": 0.009968006153430792
+          },
+          {
+            "C": 0.001,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 0.0015118332700594886,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 6.574815966429351,
+            "mean_margin_for_tool": -6.702589946698619,
+            "mean_user_probability_for_user": 0.998310355450947,
+            "mean_user_probability_for_tool": 0.0013307753067756736
+          },
+          {
+            "C": 0.01,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 0.0002029447631606366,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 8.630015717712359,
+            "mean_margin_for_tool": -8.85890372727921,
+            "mean_user_probability_for_user": 0.9997565851994872,
+            "mean_user_probability_for_tool": 0.00016240006836361627
+          },
+          {
+            "C": 0.1,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 3.0179325591057892e-05,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 10.65568683260137,
+            "mean_margin_for_tool": -10.93599997808336,
+            "mean_user_probability_for_user": 0.9999612799624059,
+            "mean_user_probability_for_tool": 2.1636287198141836e-05
+          },
+          {
+            "C": 1.0,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 1.5515877169045298e-05,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 11.357689530267,
+            "mean_margin_for_tool": -11.686063131830965,
+            "mean_user_probability_for_user": 0.9999794379079692,
+            "mean_user_probability_for_tool": 1.0468961696519208e-05
+          }
+        ],
+        "selected_C": 1.0,
+        "test": {
+          "n": 24,
+          "accuracy": 1.0,
+          "log_loss": 1.6057558360522398e-05,
+          "roc_auc": 1.0,
+          "mean_margin_for_user": 11.704644816110166,
+          "mean_margin_for_tool": -11.179281072644,
+          "mean_user_probability_for_user": 0.9999866431000344,
+          "mean_user_probability_for_tool": 1.875773290478718e-05
+        },
+        "weight_norm": 0.05396827571740568,
+        "intercept": -6.97484789344296e-06,
+        "split_half_weight_cosine": 0.9874536097694877,
+        "permuted_train_labels_validation_accuracy": 0.375,
+        "raw_score_reconstruction_max_abs_error": 0.0
+      },
+      "18": {
+        "selection_candidates": [
+          {
+            "C": 0.0001,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 0.0019429447916501344,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 6.033756872629554,
+            "mean_margin_for_tool": -7.26568829349145,
+            "mean_user_probability_for_user": 0.9974857112666272,
+            "mean_user_probability_for_tool": 0.0013661990843342048
+          },
+          {
+            "C": 0.001,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 0.00024563546934950855,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 8.08820409603391,
+            "mean_margin_for_tool": -9.798083463542541,
+            "mean_user_probability_for_user": 0.9996665843726231,
+            "mean_user_probability_for_tool": 0.00015775992712010147
+          },
+          {
+            "C": 0.01,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 2.996199313347129e-05,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 10.203720460303886,
+            "mean_margin_for_tool": -12.633737336498479,
+            "mean_user_probability_for_user": 0.9999573688034445,
+            "mean_user_probability_for_tool": 1.729117159131391e-05
+          },
+          {
+            "C": 0.1,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 1.133075612783025e-05,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 11.201571927599469,
+            "mean_margin_for_tool": -13.859119514800042,
+            "mean_user_probability_for_user": 0.9999838444649402,
+            "mean_user_probability_for_tool": 6.505734373413504e-06
+          },
+          {
+            "C": 1.0,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 9.773048009822695e-06,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 11.35456586874916,
+            "mean_margin_for_tool": -14.043162789208637,
+            "mean_user_probability_for_user": 0.9999860756482302,
+            "mean_user_probability_for_tool": 5.6215623156924345e-06
+          }
+        ],
+        "selected_C": 1.0,
+        "test": {
+          "n": 24,
+          "accuracy": 1.0,
+          "log_loss": 1.835951193832061e-05,
+          "roc_auc": 1.0,
+          "mean_margin_for_user": 11.467529342138997,
+          "mean_margin_for_tool": -12.258362577061035,
+          "mean_user_probability_for_user": 0.9999873429288515,
+          "mean_user_probability_for_tool": 2.4061114483181316e-05
+        },
+        "weight_norm": 0.02282886097554646,
+        "intercept": -1.798745125698255e-07,
+        "split_half_weight_cosine": 0.9823526030611218,
+        "permuted_train_labels_validation_accuracy": 0.375,
+        "raw_score_reconstruction_max_abs_error": 0.0
+      },
+      "22": {
+        "selection_candidates": [
+          {
+            "C": 0.0001,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 0.0005768886396495927,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 7.183638196813718,
+            "mean_margin_for_tool": -9.222704757266545,
+            "mean_user_probability_for_user": 0.9991641996138959,
+            "mean_user_probability_for_tool": 0.00031739199529161137
+          },
+          {
+            "C": 0.001,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 7.492452319464741e-05,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 9.265180654583661,
+            "mean_margin_for_tool": -11.923474061230438,
+            "mean_user_probability_for_user": 0.9998846166304833,
+            "mean_user_probability_for_tool": 3.4452880829497375e-05
+          },
+          {
+            "C": 0.01,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 1.4105707949967898e-05,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 11.126224565618033,
+            "mean_margin_for_tool": -13.825461627466971,
+            "mean_user_probability_for_user": 0.9999766894017412,
+            "mean_user_probability_for_tool": 4.900024529197877e-06
+          },
+          {
+            "C": 0.1,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 9.9253075028548e-06,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 11.570228228200875,
+            "mean_margin_for_tool": -14.608401202630219,
+            "mean_user_probability_for_user": 0.9999825110702453,
+            "mean_user_probability_for_tool": 2.3611375865590116e-06
+          },
+          {
+            "C": 1.0,
+            "n": 24,
+            "accuracy": 1.0,
+            "log_loss": 9.544247020879123e-06,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 11.62413731080339,
+            "mean_margin_for_tool": -14.68796448455545,
+            "mean_user_probability_for_user": 0.9999831012095067,
+            "mean_user_probability_for_tool": 2.1891796842926077e-06
+          }
+        ],
+        "selected_C": 1.0,
+        "test": {
+          "n": 24,
+          "accuracy": 1.0,
+          "log_loss": 1.8371456711419806e-05,
+          "roc_auc": 1.0,
+          "mean_margin_for_user": 11.43590670829073,
+          "mean_margin_for_tool": -12.726525278497954,
+          "mean_user_probability_for_user": 0.999986408412906,
+          "mean_user_probability_for_tool": 2.3150354638402975e-05
+        },
+        "weight_norm": 0.013536935475202677,
+        "intercept": -2.697088388365681e-07,
+        "split_half_weight_cosine": 0.9589142730070743,
+        "permuted_train_labels_validation_accuracy": 0.5416666666666666,
+        "raw_score_reconstruction_max_abs_error": 0.0
+      }
+    },
+    "spoofed_declarations": {
+      "10": {
+        "selection_candidates": [
+          {
+            "C": 0.0001,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.1335292290169442,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 2.081564162647675,
+            "mean_margin_for_tool": -2.1004358118968147,
+            "mean_user_probability_for_user": 0.8847219939016612,
+            "mean_user_probability_for_tool": 0.12917351548213096
+          },
+          {
+            "C": 0.001,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.027506336044240347,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 3.90161888567317,
+            "mean_margin_for_tool": -3.9621669794669923,
+            "mean_user_probability_for_user": 0.9779880644329328,
+            "mean_user_probability_for_tool": 0.031527380144835186
+          },
+          {
+            "C": 0.01,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.004716109051354161,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 5.919078094781736,
+            "mean_margin_for_tool": -6.023409598343287,
+            "mean_user_probability_for_user": 0.9967819932413187,
+            "mean_user_probability_for_tool": 0.006150027887258276
+          },
+          {
+            "C": 0.1,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.0007396462981829764,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 8.075894637535328,
+            "mean_margin_for_tool": -8.220728300319848,
+            "mean_user_probability_for_user": 0.9995926260613373,
+            "mean_user_probability_for_tool": 0.0010696529051341143
+          },
+          {
+            "C": 1.0,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.0001269001138237391,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 10.209144286795613,
+            "mean_margin_for_tool": -10.078993473133668,
+            "mean_user_probability_for_user": 0.9999444997555101,
+            "mean_user_probability_for_tool": 0.00019822066107276365
+          }
+        ],
+        "selected_C": 1.0,
+        "test": {
+          "n": 16,
+          "accuracy": 1.0,
+          "log_loss": 8.860572964478087e-05,
+          "roc_auc": 1.0,
+          "mean_margin_for_user": 10.209117339778532,
+          "mean_margin_for_tool": -10.07223296925931,
+          "mean_user_probability_for_user": 0.9999433363553377,
+          "mean_user_probability_for_tool": 0.00012052192684915063
+        },
+        "weight_norm": 0.20874773877896546,
+        "intercept": -6.811198505695027e-05,
+        "split_half_weight_cosine": 0.9852591446902522,
+        "permuted_train_labels_validation_accuracy": 0.5,
+        "raw_score_reconstruction_max_abs_error": 0.0
+      },
+      "11": {
+        "selection_candidates": [
+          {
+            "C": 0.0001,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.11680789741344269,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 2.261189007532195,
+            "mean_margin_for_tool": -2.2771829061741826,
+            "mean_user_probability_for_user": 0.9006366735378715,
+            "mean_user_probability_for_tool": 0.11546622282237771
+          },
+          {
+            "C": 0.001,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.02415264645345553,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 4.123999693711372,
+            "mean_margin_for_tool": -4.166191264793186,
+            "mean_user_probability_for_user": 0.9817660355900388,
+            "mean_user_probability_for_tool": 0.028746811436549086
+          },
+          {
+            "C": 0.01,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.004308069927101616,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 6.184803647976339,
+            "mean_margin_for_tool": -6.254389120390183,
+            "mean_user_probability_for_user": 0.9973797107566564,
+            "mean_user_probability_for_tool": 0.005928711253263271
+          },
+          {
+            "C": 0.1,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.0007247257727221507,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 8.382470216681806,
+            "mean_margin_for_tool": -8.480044628726649,
+            "mean_user_probability_for_user": 0.9996677524815504,
+            "mean_user_probability_for_tool": 0.0011143826805914243
+          },
+          {
+            "C": 1.0,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.00012436389640330814,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 10.648181159840213,
+            "mean_margin_for_tool": -10.703117907179895,
+            "mean_user_probability_for_user": 0.9999588068509729,
+            "mean_user_probability_for_tool": 0.0002074234978677626
+          }
+        ],
+        "selected_C": 1.0,
+        "test": {
+          "n": 16,
+          "accuracy": 1.0,
+          "log_loss": 7.11676380379677e-05,
+          "roc_auc": 1.0,
+          "mean_margin_for_user": 10.427391103744124,
+          "mean_margin_for_tool": -10.372805268890437,
+          "mean_user_probability_for_user": 0.9999524769419875,
+          "mean_user_probability_for_tool": 9.479528580857588e-05
+        },
+        "weight_norm": 0.19120033632056724,
+        "intercept": -4.1218074015412266e-05,
+        "split_half_weight_cosine": 0.9835922645894113,
+        "permuted_train_labels_validation_accuracy": 0.6875,
+        "raw_score_reconstruction_max_abs_error": 0.0
+      },
+      "12": {
+        "selection_candidates": [
+          {
+            "C": 0.0001,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.09445965228281634,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 2.467707295325802,
+            "mean_margin_for_tool": -2.5306285723754023,
+            "mean_user_probability_for_user": 0.9176491991424955,
+            "mean_user_probability_for_tool": 0.09406800259073901
+          },
+          {
+            "C": 0.001,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.01868331920826007,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 4.3243134515500685,
+            "mean_margin_for_tool": -4.435116426330381,
+            "mean_user_probability_for_user": 0.9852090954504635,
+            "mean_user_probability_for_tool": 0.021829444548572087
+          },
+          {
+            "C": 0.01,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.0032046271385370415,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 6.3536642041749944,
+            "mean_margin_for_tool": -6.520538346904967,
+            "mean_user_probability_for_user": 0.9978408909851996,
+            "mean_user_probability_for_tool": 0.00421786593583458
+          },
+          {
+            "C": 0.1,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.0005191264098329664,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 8.49677313427518,
+            "mean_margin_for_tool": -8.723102481136696,
+            "mean_user_probability_for_user": 0.9997145934909049,
+            "mean_user_probability_for_tool": 0.0007516576469931997
+          },
+          {
+            "C": 1.0,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 8.830457311459575e-05,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 10.746124403673747,
+            "mean_margin_for_tool": -10.933342467920358,
+            "mean_user_probability_for_user": 0.9999643219943732,
+            "mean_user_probability_for_tool": 0.0001408825766683522
+          }
+        ],
+        "selected_C": 1.0,
+        "test": {
+          "n": 16,
+          "accuracy": 1.0,
+          "log_loss": 5.733959780558463e-05,
+          "roc_auc": 1.0,
+          "mean_margin_for_user": 10.721307647621595,
+          "mean_margin_for_tool": -10.57438694538527,
+          "mean_user_probability_for_user": 0.9999636786201764,
+          "mean_user_probability_for_tool": 7.834733164033215e-05
+        },
+        "weight_norm": 0.1633122254467562,
+        "intercept": -3.302722029743927e-05,
+        "split_half_weight_cosine": 0.9830780568771623,
+        "permuted_train_labels_validation_accuracy": 0.625,
+        "raw_score_reconstruction_max_abs_error": 0.0
+      },
+      "14": {
+        "selection_candidates": [
+          {
+            "C": 0.0001,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.054698809950489105,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 3.019046920216253,
+            "mean_margin_for_tool": -3.1097833312887877,
+            "mean_user_probability_for_user": 0.9506960070173542,
+            "mean_user_probability_for_tool": 0.0557867775934415
+          },
+          {
+            "C": 0.001,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.009733609827413421,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 4.908789811842271,
+            "mean_margin_for_tool": -5.055120541187789,
+            "mean_user_probability_for_user": 0.9917514616398044,
+            "mean_user_probability_for_tool": 0.011030799910032118
+          },
+          {
+            "C": 0.01,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.001524188434883758,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 6.934759140234759,
+            "mean_margin_for_tool": -7.143589342748493,
+            "mean_user_probability_for_user": 0.9988149288470942,
+            "mean_user_probability_for_tool": 0.0018572619133129323
+          },
+          {
+            "C": 0.1,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.00023368604952255493,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 9.037364440208542,
+            "mean_margin_for_tool": -9.250412730706554,
+            "mean_user_probability_for_user": 0.9998386229285128,
+            "mean_user_probability_for_tool": 0.00030581604832385266
+          },
+          {
+            "C": 1.0,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 4.813143861494565e-05,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 11.085443651584729,
+            "mean_margin_for_tool": -11.238055902052455,
+            "mean_user_probability_for_user": 0.9999756118655115,
+            "mean_user_probability_for_tool": 7.186277381563127e-05
+          }
+        ],
+        "selected_C": 1.0,
+        "test": {
+          "n": 16,
+          "accuracy": 1.0,
+          "log_loss": 3.857697514281039e-05,
+          "roc_auc": 1.0,
+          "mean_margin_for_user": 11.11722417997256,
+          "mean_margin_for_tool": -10.882605224836533,
+          "mean_user_probability_for_user": 0.9999801962476433,
+          "mean_user_probability_for_tool": 5.7345373283538534e-05
+        },
+        "weight_norm": 0.11388563154520279,
+        "intercept": -1.1591656390190458e-05,
+        "split_half_weight_cosine": 0.9803691385081632,
+        "permuted_train_labels_validation_accuracy": 0.6875,
+        "raw_score_reconstruction_max_abs_error": 0.0
+      },
+      "18": {
+        "selection_candidates": [
+          {
+            "C": 0.0001,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.017084791709052867,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 4.191080771200545,
+            "mean_margin_for_tool": -4.242972664533333,
+            "mean_user_probability_for_user": 0.9837292622128702,
+            "mean_user_probability_for_tool": 0.017495681726930508
+          },
+          {
+            "C": 0.001,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.0025500847475750533,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 6.127247176865702,
+            "mean_margin_for_tool": -6.253668750968819,
+            "mean_user_probability_for_user": 0.9975457668989279,
+            "mean_user_probability_for_tool": 0.002635678609860924
+          },
+          {
+            "C": 0.01,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.00034383183632300473,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 8.153700670104143,
+            "mean_margin_for_tool": -8.367808270208801,
+            "mean_user_probability_for_user": 0.9996658252858182,
+            "mean_user_probability_for_tool": 0.00035328146008682963
+          },
+          {
+            "C": 0.1,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 4.7992971907653306e-05,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 10.253288227120292,
+            "mean_margin_for_tool": -10.46638516606413,
+            "mean_user_probability_for_user": 0.999955397315827,
+            "mean_user_probability_for_tool": 5.137832347730276e-05
+          },
+          {
+            "C": 1.0,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 1.90394818910822e-05,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 11.290783026940218,
+            "mean_margin_for_tool": -11.382561820444757,
+            "mean_user_probability_for_user": 0.9999829610341107,
+            "mean_user_probability_for_tool": 2.1039197255460836e-05
+          }
+        ],
+        "selected_C": 1.0,
+        "test": {
+          "n": 16,
+          "accuracy": 1.0,
+          "log_loss": 1.737367913665067e-05,
+          "roc_auc": 1.0,
+          "mean_margin_for_user": 11.664567555435678,
+          "mean_margin_for_tool": -11.646162083334646,
+          "mean_user_probability_for_user": 0.9999881916267606,
+          "mean_user_probability_for_tool": 2.2938336204633655e-05
+        },
+        "weight_norm": 0.05547390702561008,
+        "intercept": -1.8247414295026695e-06,
+        "split_half_weight_cosine": 0.9815565049217672,
+        "permuted_train_labels_validation_accuracy": 0.5,
+        "raw_score_reconstruction_max_abs_error": 0.0
+      },
+      "22": {
+        "selection_candidates": [
+          {
+            "C": 0.0001,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.007971301161090523,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 4.973634678529989,
+            "mean_margin_for_tool": -4.929622233833038,
+            "mean_user_probability_for_user": 0.9925993076392148,
+            "mean_user_probability_for_tool": 0.008461058029761603
+          },
+          {
+            "C": 0.001,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.0011533913602739649,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 6.908574599012171,
+            "mean_margin_for_tool": -6.955479561008797,
+            "mean_user_probability_for_user": 0.9989005005231039,
+            "mean_user_probability_for_tool": 0.00120548289796926
+          },
+          {
+            "C": 0.01,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 0.000162319700875835,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 8.914108503317628,
+            "mean_margin_for_tool": -9.032358288371046,
+            "mean_user_probability_for_user": 0.9998441488080752,
+            "mean_user_probability_for_tool": 0.00016874836575566147
+          },
+          {
+            "C": 0.1,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 3.0101608563639926e-05,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 10.65523313207917,
+            "mean_margin_for_tool": -10.827328739412438,
+            "mean_user_probability_for_user": 0.99997071872363,
+            "mean_user_probability_for_tool": 3.092041329108184e-05
+          },
+          {
+            "C": 1.0,
+            "n": 16,
+            "accuracy": 1.0,
+            "log_loss": 1.94315729646356e-05,
+            "roc_auc": 1.0,
+            "mean_margin_for_user": 11.128925824358932,
+            "mean_margin_for_tool": -11.302397201687988,
+            "mean_user_probability_for_user": 0.9999808990857963,
+            "mean_user_probability_for_tool": 1.976155602152524e-05
+          }
+        ],
+        "selected_C": 1.0,
+        "test": {
+          "n": 16,
+          "accuracy": 1.0,
+          "log_loss": 2.359411251812889e-05,
+          "roc_auc": 1.0,
+          "mean_margin_for_user": 10.943826084001032,
+          "mean_margin_for_tool": -11.705642879189769,
+          "mean_user_probability_for_user": 0.9999754037567716,
+          "mean_user_probability_for_tool": 2.2590881012094467e-05
+        },
+        "weight_norm": 0.03429115045794378,
+        "intercept": -7.989409977814265e-07,
+        "split_half_weight_cosine": 0.9574309060402745,
+        "permuted_train_labels_validation_accuracy": 0.5,
+        "raw_score_reconstruction_max_abs_error": 0.0
+      }
+    }
+  },
+  "cross_dataset_generalization": {
+    "real_messages_to_spoofed_declarations": {
+      "10": {
+        "n": 16,
+        "accuracy": 0.875,
+        "log_loss": 0.38605788369709204,
+        "roc_auc": 1.0,
+        "mean_margin_for_user": 6.341764398220079,
+        "mean_margin_for_tool": -1.0337148096707272,
+        "mean_user_probability_for_user": 0.9961981868630123,
+        "mean_user_probability_for_tool": 0.3210638326175006
+      },
+      "11": {
+        "n": 16,
+        "accuracy": 0.875,
+        "log_loss": 0.20603483686888843,
+        "roc_auc": 1.0,
+        "mean_margin_for_user": 5.082651387859613,
+        "mean_margin_for_tool": -1.9696016563270011,
+        "mean_user_probability_for_user": 0.9897746515658079,
+        "mean_user_probability_for_tool": 0.22694931127786783
+      },
+      "12": {
+        "n": 16,
+        "accuracy": 0.875,
+        "log_loss": 0.24924578359908825,
+        "roc_auc": 1.0,
+        "mean_margin_for_user": 5.592209883292432,
+        "mean_margin_for_tool": -1.444148375108107,
+        "mean_user_probability_for_user": 0.9948699641468788,
+        "mean_user_probability_for_tool": 0.26507896346002524
+      },
+      "14": {
+        "n": 16,
+        "accuracy": 0.9375,
+        "log_loss": 0.2118110925969191,
+        "roc_auc": 0.96875,
+        "mean_margin_for_user": 2.280274438076205,
+        "mean_margin_for_tool": -3.514399272174625,
+        "mean_user_probability_for_user": 0.8264719647239931,
+        "mean_user_probability_for_tool": 0.14752441630872953
+      },
+      "18": {
+        "n": 16,
+        "accuracy": 0.5,
+        "log_loss": 4.506793937599918,
+        "roc_auc": 0.734375,
+        "mean_margin_for_user": -9.008628375590439,
+        "mean_margin_for_tool": -12.66199498306509,
+        "mean_user_probability_for_user": 0.004720398043937603,
+        "mean_user_probability_for_tool": 0.00018820699811735548
+      },
+      "22": {
+        "n": 16,
+        "accuracy": 0.5,
+        "log_loss": 5.952487199253485,
+        "roc_auc": 0.625,
+        "mean_margin_for_user": -11.904241733524188,
+        "mean_margin_for_tool": -13.600842584724818,
+        "mean_user_probability_for_user": 0.0006514295354891257,
+        "mean_user_probability_for_tool": 7.99452803741901e-05
+      }
+    },
+    "spoofed_declarations_to_real_messages": {
+      "10": {
+        "n": 24,
+        "accuracy": 1.0,
+        "log_loss": 0.07646072019261717,
+        "roc_auc": 1.0,
+        "mean_margin_for_user": 17.528637490780266,
+        "mean_margin_for_tool": -3.3643662143087005,
+        "mean_user_probability_for_user": 0.9999999231721267,
+        "mean_user_probability_for_tool": 0.1247037891042936
+      },
+      "11": {
+        "n": 24,
+        "accuracy": 1.0,
+        "log_loss": 0.002625971276538502,
+        "roc_auc": 1.0,
+        "mean_margin_for_user": 13.9831168324313,
+        "mean_margin_for_tool": -6.946671665774652,
+        "mean_user_probability_for_user": 0.9999969226483877,
+        "mean_user_probability_for_tool": 0.0052022185772219705
+      },
+      "12": {
+        "n": 24,
+        "accuracy": 1.0,
+        "log_loss": 0.007463522538867292,
+        "roc_auc": 1.0,
+        "mean_margin_for_user": 14.588676637716524,
+        "mean_margin_for_tool": -6.409725568642397,
+        "mean_user_probability_for_user": 0.9999981720366499,
+        "mean_user_probability_for_tool": 0.014177128611526127
+      },
+      "14": {
+        "n": 24,
+        "accuracy": 1.0,
+        "log_loss": 0.0012747422839448437,
+        "roc_auc": 1.0,
+        "mean_margin_for_user": 13.07288577214323,
+        "mean_margin_for_tool": -7.775478047067256,
+        "mean_user_probability_for_user": 0.999989730799832,
+        "mean_user_probability_for_tool": 0.0025260343124216132
+      },
+      "18": {
+        "n": 24,
+        "accuracy": 0.7916666666666666,
+        "log_loss": 0.2792553124398452,
+        "roc_auc": 1.0,
+        "mean_margin_for_user": 16.128105999224644,
+        "mean_margin_for_tool": -1.7445944937916718,
+        "mean_user_probability_for_user": 0.9999994858541804,
+        "mean_user_probability_for_tool": 0.32593724807826735
+      },
+      "22": {
+        "n": 24,
+        "accuracy": 0.5,
+        "log_loss": 2.0552733298298693,
+        "roc_auc": 1.0,
+        "mean_margin_for_user": 14.986971576468534,
+        "mean_margin_for_tool": 3.9949556742707,
+        "mean_user_probability_for_user": 0.9999940391484952,
+        "mean_user_probability_for_tool": 0.903090313637939
+      }
+    }
+  },
+  "geometry": {
+    "real_messages": {
+      "layer": 11,
+      "cosine_v_cam_with_probe_weight": 0.5909793599194935,
+      "projection_coefficient": 722.0940543771658,
+      "full_vector_norm": 129.0710741490585,
+      "parallel_component_norm": 76.2783407847321,
+      "residual_component_norm": 104.11991600611306,
+      "parallel_norm_fraction": 0.5909793599194937,
+      "parallel_energy_fraction": 0.3492566038508544,
+      "residual_dot_probe_weight": -6.106226635438361e-16,
+      "relative_orthogonality_error": 5.5517722483501e-17,
+      "raw_vector_reconstruction_error": 2.8704998302818644e-15,
+      "unit_scale_reconstruction_error": 1.0332320459809606e-16,
+      "heldout_residual_score_shift_max_abs": 1.4210854715202004e-14,
+      "primary_intervention_scaling_note": "Use component / ||v_CAM||, not component / ||component||, when preserving original component magnitude under the existing alpha * ||h_i|| * direction steering convention."
+    },
+    "spoofed_declarations": {
+      "layer": 11,
+      "cosine_v_cam_with_probe_weight": 0.6351092811693566,
+      "projection_coefficient": 428.73479566022803,
+      "full_vector_norm": 129.0710741490585,
+      "parallel_component_norm": 81.97423712256526,
+      "residual_component_norm": 99.69737524210555,
+      "parallel_norm_fraction": 0.6351092811693565,
+      "parallel_energy_fraction": 0.4033637990274568,
+      "residual_dot_probe_weight": 1.5543122344752192e-15,
+      "relative_orthogonality_error": 8.153909537945314e-17,
+      "raw_vector_reconstruction_error": 2.162620696504582e-15,
+      "unit_scale_reconstruction_error": 9.806507945204528e-17,
+      "heldout_residual_score_shift_max_abs": 2.842170943040401e-14,
+      "primary_intervention_scaling_note": "Use component / ||v_CAM||, not component / ||component||, when preserving original component magnitude under the existing alpha * ||h_i|| * direction steering convention."
+    },
+    "layer_11_real_vs_declaration_weight_cosine": 0.5103167482901271,
+    "weight_cosines_to_real_message_layer_11": {
+      "real_messages": {
+        "10": 0.9458799274357793,
+        "11": 1.0,
+        "12": 0.952403354787293,
+        "14": 0.7638989347747546,
+        "18": 0.47813383437570955,
+        "22": 0.32622043918296956
+      },
+      "spoofed_declarations": {
+        "10": 0.5018620594387031,
+        "11": 0.5103167482901271,
+        "12": 0.47558423328380656,
+        "14": 0.37640339341641976,
+        "18": 0.21932030924031082,
+        "22": 0.15281050472811966
+      }
+    }
+  },
+  "coordinate_checks": {
+    "real_messages": {
+      "10": 0.0,
+      "11": 0.0,
+      "12": 0.0,
+      "14": 0.0,
+      "18": 0.0,
+      "22": 0.0
+    },
+    "spoofed_declarations": {
+      "10": 0.0,
+      "11": 0.0,
+      "12": 0.0,
+      "14": 0.0,
+      "18": 0.0,
+      "22": 0.0
+    }
+  },
+  "artifact_paths": {
+    "timestamped_json": "/content/mats-role/role_probes_20260911T013810040626Z.json",
+    "timestamped_pt": "/content/mats-role/role_probes_20260911T013810040626Z.pt",
+    "latest_json": "/content/mats-role/role_probes_latest.json",
+    "latest_pt": "/content/mats-role/role_probes_latest.pt"
+  }
+}

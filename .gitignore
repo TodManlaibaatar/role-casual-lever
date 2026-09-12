@@ -5,6 +5,10 @@
 /results/*
 !/results/.gitkeep
 
+# Curated aggregate results that should be version controlled
+!/results/final/
+!/results/final/**
+
 # Large/generated experiment artifacts
 *.log
 *.tar.gz
